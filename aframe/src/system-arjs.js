@@ -55,6 +55,10 @@ AFRAME.registerSystem('arjs', {
             type: 'string',
             default: '',
         },
+        sourceID: {
+            type: 'string',
+            default: '',
+        },
         sourceWidth: {
             type: 'number',
             default: -1
@@ -121,6 +125,7 @@ AFRAME.registerSystem('arjs', {
 
         if (this.data.sourceType !== '') arProfile.sourceParameters.sourceType = this.data.sourceType
         if (this.data.sourceUrl !== '') arProfile.sourceParameters.sourceUrl = this.data.sourceUrl
+        if (this.data.sourceID !== '') arProfile.sourceParameters.sourceID = this.data.sourceID
         if (this.data.sourceWidth !== -1) arProfile.sourceParameters.sourceWidth = this.data.sourceWidth
         if (this.data.sourceHeight !== -1) arProfile.sourceParameters.sourceHeight = this.data.sourceHeight
         if (this.data.deviceId !== '') arProfile.sourceParameters.deviceId = this.data.deviceId

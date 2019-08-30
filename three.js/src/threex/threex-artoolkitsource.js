@@ -13,7 +13,8 @@ ARjs.Source = THREEx.ArToolkitSource = function(parameters){
 		sourceType : 'webcam',
 		// url of the source - valid if sourceType = image|video
 		sourceUrl : null,
-
+		// ID of the source - valid if sourceType = webcam and sourceID is a <video> element
+		sourceID : null,
 		// Device id of the camera to use (optional)
 		deviceId : null,
 
@@ -167,7 +168,19 @@ ARjs.Source.prototype._initSourceWebcam = function(onReady, onError) {
 		window.dispatchEvent(event);
 	}
 
-	var domElement = document.createElement('video');
+  var domElement;
+  if(this.parameters.sourceID) {
+    domElement = document.getElementById(this.parameters.sourceID);
+    if(domElement == null) {
+      onError({
+        name: '',
+        message: '<video> source element "' + this.parameters.sourceID + '" not found'
+      });
+      return null;
+    }
+  } else {
+    domElement = document.createElement('video');
+  }
 	domElement.setAttribute('autoplay', '');
 	domElement.setAttribute('muted', '');
 	domElement.setAttribute('playsinline', '');

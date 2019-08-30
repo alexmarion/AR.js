@@ -46,7 +46,7 @@
 	</div>
 
 	<!-- Define your 3d scene and enabled ar.js -->
-	<a-scene embedded arjs='trackingMethod: best;'>
+	<a-scene embedded arjs='trackingMethod: best; sourceID: video-stream;'>
 
 		<!-- Create a anchor to attach your augmented reality -->
 		<a-anchor hit-testing-enabled='true'>
@@ -62,6 +62,9 @@
 
 		<!-- Define a static camera -->
 		<a-camera-static/>
+
+    <!-- Define a custom video element -->
+    <video id="video-stream" autoplay="true"></video>
 
 	</a-scene>
 </body>

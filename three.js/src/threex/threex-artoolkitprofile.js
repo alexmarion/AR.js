@@ -122,6 +122,7 @@ ARjs.Profile.prototype.defaultMarker = function (trackingBackend) {
 //////////////////////////////////////////////////////////////////////////////
 ARjs.Profile.prototype.sourceWebcam = function () {
     this.sourceParameters.sourceType = 'webcam'
+    // TODO: may need to add an ID parameter to this function and reset here
     delete this.sourceParameters.sourceUrl
     return this
 }
