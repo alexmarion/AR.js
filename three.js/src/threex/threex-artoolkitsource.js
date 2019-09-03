@@ -70,18 +70,27 @@ ARjs.Source.prototype.init = function(onReady, onError){
 
 	// attach
         this.domElement = domElement
-        this.domElement.style.position = 'absolute'
-        this.domElement.style.top = '0px'
-        this.domElement.style.left = '0px'
-		this.domElement.style.zIndex = '-2'
-		this.domElement.setAttribute('id', 'arjs-video');
+
+    // Default the domElement ID to 'arjs-video' and set default styles
+    if(this.parameters.sourceID == null) {
+      this.parameters.sourceID = 'arjs-video';
+      this.domElement.style.position = 'absolute'
+      this.domElement.style.top = '0px'
+      this.domElement.style.left = '0px'
+    }
+    this.domElement.style.zIndex = '-2'
+
+    // Reset the domElement ID if it's not equal to the sourceID parameter
+    if(this.parameters.sourceID !== this.domElement.id) {
+      this.domElement.setAttribute('id', this.parameters.sourceID);
+    }
 
 	return this
         function onSourceReady(){
         document.body.appendChild(_this.domElement);
         window.dispatchEvent(new CustomEvent('arjs-video-loaded', {
             detail: {
-                component: document.querySelector('#arjs-video'),
+                component: document.querySelector('#' + _this.parameters.sourceID),
             },
         }));
 
